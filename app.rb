@@ -22,3 +22,9 @@ get('/band/:id') do
   @venues = Venue.all()
   erb(:band)
 end
+
+get('/band/delete/:id') do
+  to_destroy_band = Band.find(params.fetch('id').to_i())
+  to_destroy_band.destroy()
+  redirect('/')
+end
