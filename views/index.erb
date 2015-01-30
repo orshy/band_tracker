@@ -1,1 +1,31 @@
-<h1> Band Tracker </h1>
+<h1>Band Tracker</h1>
+
+<hr>
+
+<h4>Add Band:</h4>
+
+<form action:"/" method="post">
+  <div class="form-group">
+    <input name="band_name" class="form-control" type="test" placeholder="Enter Band Here">
+    <br>
+    <button class="btn btn-success" value="submit">Add Band!</button>
+  </div>
+  <form>
+
+    <hr>
+
+    <% if @bands.any?() %>
+    <h4>Bands:</h4>
+    <ul>
+      <% @bands.each() do |band| %>
+      <li>
+        <a href="/band/<%= band.id() %>"><%= band.name() %></a>
+        <a href="/band/delete/<%= band.id() %>">
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>You have no bands</p>
+    <% end %>
+
+    <hr>
