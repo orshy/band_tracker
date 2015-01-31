@@ -1,6 +1,6 @@
-<h1><%= @band.name %></h1>
+<h1><em><font face="verdana" color="tomato"><%= @band.name %></em></font></h1>
 
-<h4>Change <%= @band.name %>'s name:</h4>
+<h4><small>Change <%= @band.name %>'s name:</small></h4>
 <form action="/band/<%= @band.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <div class="form-group">
@@ -9,3 +9,31 @@
     <button class="btn btn-danger" value="submit">Change Band Name</button>
   </div>
 </form>
+
+<h4><small>Click the venues below that <%= @band.name %> have played:</small></h4>
+<% if @venues.any?() %>
+<form action="/band/<%= @band.id %>" method="post">
+  <% @venues.each() do |venue| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="venue_ids[]" value="<%= venue.id() %>"><%= venue.name() %>
+    </label>
+  </div>
+  <% end %>
+  <button type="submit" class="btn btn-success">Add Gig</button>
+</form>
+<% end %>
+
+<hr>
+<h4><small>Venues <%= @band.name %> has played:</small></h4>
+<% if @band.venues().any?() %>
+<ul>
+  <% @band.venues().each() do |venue| %>
+  <li><%= venue.name() %></li>
+  <% end %>
+</ul>
+<% else %>
+<p><%= @band.name %> have no listed gigs mate!</p>
+<% end %>
+<hr>
+<a href="/">Back<a>

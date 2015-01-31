@@ -1,5 +1,4 @@
-<h1><em>Band Tracker</em></h1>
-
+<h1><font face="verdana" color="tomato">Band Tracker</font></h1>
 <hr>
 
 <h4><small>Add Band:</small></h4>
@@ -8,7 +7,7 @@
   <div class="form-group">
     <input name="band_name" class="form-control" type="test" placeholder="Enter Band Here">
     <br>
-    <button class="btn btn-danger" value="submit">Add Band!</button>
+    <button class="btn btn-primary" value="submit">Add Band</button>
   </div>
   <form>
 
@@ -20,12 +19,35 @@
       <% @bands.each() do |band| %>
       <li>
         <a href="/band/<%= band.id() %>"><%= band.name() %></a>
-        <a href="/band/delete/<%= band.id() %>"><small>(delete band)</small></a>
+        <a href="/band/delete/<%= band.id() %>"><small>(delete)</small></a>
       </li>
       <% end %>
     </ul>
     <% else %>
-    <p>You have no bands</p>
+    <p>(no bands)</p>
     <% end %>
 
     <hr>
+
+    <h4><small>Add Venue:</small></h4>
+
+    <form action:"/" method="post">
+      <div class="form-group">
+        <input name="venue_name" class="form-control" type="test" placeholder="Enter Venue Here">
+        <br>
+        <button class="btn btn-primary" value="submit">Add Venue</button>
+      </div>
+      <form>
+
+        <hr>
+
+        <% if @venues.any?() %>
+        <h4><small>Venues:</small></h4>
+        <ul>
+          <% @venues.each() do |venue| %>
+          <li><%= venue.name() %></li>
+          <% end %>
+        </ul>
+        <% else %>
+        <p><small>(no venues)</small></p>
+        <% end %>
